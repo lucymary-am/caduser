@@ -23,11 +23,11 @@
                 <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->nome }}</td>
                             <td>{{ $user->email }}</td>
                             <td class="text-center">
                                 <a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                                <form action="{{ route('usuarios.destroy', $user->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('usuarios.delete', $user->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
