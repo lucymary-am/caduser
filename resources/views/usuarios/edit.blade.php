@@ -20,7 +20,7 @@
     <!-- Formulário de edição -->
     <form action="{{ route('usuarios.update', $user->id) }}" method="POST" class="shadow p-4 rounded bg-light">
         @csrf
-        @method('PUT') <!-- Método HTTP PUT para atualização -->
+        @method('PUT') 
 
         <div class="mb-3">
             <label for="nome" class="form-label">Nome:</label>
@@ -45,17 +45,7 @@
                 required
             >
         </div>
-
-        <div class="mb-3">
-            <label for="password" class="form-label">Senha:</label>
-            <input 
-                type="password" 
-                id="password" 
-                name="password" 
-                class="form-control" 
-                placeholder="Deixe em branco para manter a atual"
-            >
-        </div>
+      
 
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Voltar</a>

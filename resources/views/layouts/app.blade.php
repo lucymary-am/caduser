@@ -23,7 +23,7 @@
     </main>
 
     <footer>
-        <p>&copy; {{ date('Y') }} Minha Aplicação. Todos os direitos reservados.</p>
+        <p>&copy; {{ date('Y') }} Desafio Técnico - Cadastro de usuários.</p>
     </footer>
 
 </body>

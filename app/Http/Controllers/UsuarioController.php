@@ -33,7 +33,7 @@ class UsuarioController extends Controller
         $user->senha = Hash::make($validatedData['senha']); 
         $user->save();
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('success', 'Usuário cadastrado com sucesso!');;
     }
 
     public function edit($id)
