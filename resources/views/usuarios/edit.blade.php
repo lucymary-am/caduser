@@ -1,26 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Usuário')
+@section('title', 'Alterar Usuário')
 
 @section('content')
-<div class="container mt-5">
-    <h1 class="mb-4">Editar Usuário</h1>
-
-    <!-- Exibir mensagens de erro -->
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <!-- Formulário de edição -->
-    <form action="{{ route('usuarios.update', $user->id) }}" method="POST" class="shadow p-4 rounded bg-light">
+    <form id="updateUserForm" 
+        action="{{ route('usuarios.update', $user->id) }}" 
+        class="shadow p-4 rounded bg-light"
+    >
         @csrf
-        @method('PUT') 
 
         <div class="mb-3">
             <label for="nome" class="form-label">Nome:</label>
@@ -45,10 +32,16 @@
                 required
             >
         </div>
-      
 
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Voltar</a>
     </form>
-</div>
+
+    <script type="module">
+        import UsuarioDao from "{{ Vite::asset('resources/js/dao/usuario-service.js') }}" 
+        const dao = new UsuarioDao('updateUserForm',
+            '{{ route('usuarios.index') }}'
+        );
+        dao.handleUpdate();
+    </script>
 @endsection
