@@ -25,6 +25,9 @@ class UsuarioController extends Controller
             'nome' => 'required|string|min:3|max:50',
             'email' => 'required|email|unique:usuarios,email',
             'senha' => 'required|string|min:6|max:20|confirmed', 
+        ], [
+            'email.email' => 'Informe um e-mail válido',
+            'email.unique' => 'Este e-mail já está em uso. Por favor, escolha outro.',
         ]);
 
         $user = new Usuario();
@@ -44,15 +47,15 @@ class UsuarioController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validação dos dados recebidos
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|email|unique:usuarios,email,' . $id, // Permitir duplicação do atual            
+            'nome' => 'required|string|min:3|max:50',
+            'email' => 'required|email|unique:usuarios,email,' . $id,           
+        ], [
+            'email.email' => 'Informe um e-mail válido',
+            'email.unique' => 'Este e-mail já está em uso. Por favor, escolha outro.',
         ]);
         
         $usuario = Usuario::findOrFail($id);
-
-        
         $usuario->update($validatedData);
 
         return redirect()->route('usuarios.index')->with('success', 'Usuário atualizado com sucesso!');;
