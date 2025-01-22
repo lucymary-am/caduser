@@ -1,0 +1,33 @@
+services:
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:latest
+    container_name: caduser-db
+    environment:
+      POSTGRES_DB: caduser
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456
+    networks:
+      - caduser
+
+  # Laravel Application
+  app:
+    container_name: caduser-app
+    image: caduser-app:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        uid: 1000
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8000:80"
+    depends_on:
+      - postgres
+    networks:
+      - caduser
+
+networks:
+  caduser:
