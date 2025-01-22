@@ -36,12 +36,4 @@
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Voltar</a>
     </form>
-
-    <script type="module">
-        import UsuarioDao from "{{ Vite::asset('resources/js/dao/usuario-service.js') }}" 
-        const dao = new UsuarioDao('updateUserForm',
-            '{{ route('usuarios.index') }}'
-        );
-        dao.handleUpdate();
-    </script>
 @endsection

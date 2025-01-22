@@ -3,6 +3,8 @@
 @section('title', 'Criar Novo Usuário')
 
 @section('content')
+
+    @vite('resources/js/services/usuario-service.js')
     
     <form id="createUserForm" class="mt-4"
         action="{{ route('usuarios.store') }}" 
@@ -32,14 +34,6 @@
         <button type="submit" class="btn btn-primary">Criar Usuário</button>
         <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
-
-    <script type="module">
-        import UsuarioDao from "{{ Vite::asset('resources/js/dao/usuario-service.js') }}" 
-        const dao = new UsuarioDao('createUserForm',
-            '{{ route('usuarios.index') }}'
-        );
-        dao.handleCreate();
-    </script>
 
 @endsection
 

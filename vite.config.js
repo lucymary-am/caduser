@@ -7,9 +7,17 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/js/usuario-service.js'
+                'resources/js/services/usuario-service.js'
             ],
             refresh: true,
         }),
     ],
+    server: {
+        host: true,
+        port: 8000
+    },
+    preview: {
+        host: true,
+        port: 8000
+    }
 });

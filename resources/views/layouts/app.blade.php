@@ -6,12 +6,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Desafio Técnico')</title>
     <!-- Adicione seus estilos aqui -->
-
-    @vite('resources/js/app.js')
     
+    @vite('resources/js/app.js')
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css"/>
 </head>
 <body>
-
     <main>
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -30,10 +33,8 @@
         </div>
     </main>
 
-    @vite('resources/css/app.css') 
-
     <footer>
-        <p>&copy; {{ date('Y') }} Desafio Técnico - Cadastro de usuários.</p>
+        <p style="text-align: center">&copy; {{ date('Y') }} Desafio Técnico - Cadastro de usuários.</p>
     </footer>
 
 </body>

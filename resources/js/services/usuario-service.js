@@ -1,21 +1,25 @@
-class UsuarioDao {
-    constructor(formId, routeIndex) {
-        this.form = document.getElementById(formId);
-        this.routeIndex = routeIndex
+export default class UsuarioService {
+    constructor() {
     }
 
+    getFormCreate() {
+        return document.getElementById('createUserForm');
+    }
+    
     handleCreate() {
-        this.form.addEventListener('submit', this.doHandleCreate.bind(this));
+        if (this.getFormCreate()) {
+            this.getFormCreate().addEventListener('submit', this.doHandleCreate.bind(this));
+        }
     }
 
     doHandleCreate(event) {
         event.preventDefault();
-        let formData = new FormData(this.form);
+        let formData = new FormData(this.getFormCreate());
         this.create(formData);
     }
 
     create(formData) {
-        fetch(this.form.action, {
+        fetch(this.getFormCreate().action, {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': formData.get('_token'),
@@ -28,21 +32,27 @@ class UsuarioDao {
         .catch(error => this.handleError(error));
     }
 
+    getFormUpdate() {
+        return document.getElementById('updateUserForm');
+    }
+
     handleUpdate() {
-        this.form.addEventListener('submit', this.doHandleUpdate.bind(this));
+        if (this.getFormUpdate()) {
+            this.getFormUpdate().addEventListener('submit', this.doHandleUpdate.bind(this));
+        }
     }
 
     doHandleUpdate(event) {
         event.preventDefault();
         
-        const formData = new FormData(this.form);
+        const formData = new FormData(this.getFormUpdate());
 
         this.update(formData);
     }
 
     update(formData) {
         const jsonData = Object.fromEntries(formData.entries());
-        fetch(this.form.action, {
+        fetch(this.getFormUpdate().action, {
             method: 'PUT',  
             headers: {
                 'X-CSRF-TOKEN': formData.get('_token'),
@@ -59,17 +69,15 @@ class UsuarioDao {
     // Trata a resposta da requisição
     handleResponse(data) {
         if (data.success) {
-            alert('Usuário salvo com sucesso');
-            window.location.href = this.routeIndex;  // Redireciona após sucesso
+            alertify.alert('Sucesso', 'Usuário salvo com sucesso!', function(){ window.location.href = '/usuarios'; });
+
         } else {
-            alert('Erro ao salvar o usuário: ' + data.message);  // Exibe erro se falhar
+            alertify.error('Erro ao salvar o usuário: ' + data.message);  // Exibe erro se falhar
         }
     }
 
     // Trata erros na requisição AJAX
     handleError(error) {
-        alert('Erro na requisição: ' + error.message);  // Exibe erro de rede ou outro
+        alertify.error('Erro na requisição: ' + error.message);  // Exibe erro de rede ou outro
     }
 }
-
-export default UsuarioDao;
