@@ -10,30 +10,21 @@ Siga as instruções abaixo:
 
 ## Configuração do Ambiente
 
-### **Faça o clone do repositório:**
-    ```bash
+### **Execute os seguintes comandos para baixar o repositório e executar as instâncias docker:**
+    ```
     https://github.com/lucymary-am/caduser.git
     cd caduser
-    ```
-
-### **Renomeie o arquivo `.env.example` para `.env`:**
-    ```bash
     cp .env.example .env
-    ```
-
-### **Build e rode instâncias Docker:**
-    ```bash
     docker compose up -d --build
     ```
 
-- Este comando irá construir as imagens necessárias e iniciar os contêineres.
 - Aguarde a instalação e execução das migrations para começar!
 
 ## Acessando a aplicação
-Acesse a aplicação em: [http://localhost:8000](http://localhost:8000)
+Acesse a aplicação a partir da URL: [http://localhost:8000](http://localhost:8000)
 
 
-## Executando Testes
+## Testes
 
 Para executar testes, utilize o seguinte comando:
    ```bash
